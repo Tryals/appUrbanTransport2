@@ -21,29 +21,32 @@ namespace appUrbanTransport.Pages
     /// </summary>
     public partial class PageAddEditTransport : Page
     {
-        public PageAddEditTransport()
+        private Transport _currentTransport = new Transport();
+        public PageAddEditTransport(Transport selectedTransport)
         {
             InitializeComponent();
-            UrbanTransportEntities.GetContext().Transport.ToList();
+            if (selectedTransport != null)
+                _currentTransport = selectedTransport;
+            DataContext = _currentTransport;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            Transport transport = new Transport()
+            if (_currentTransport.id_transport == 0)
             {
-                name = TxtName.Text,
-                speed_km_h = int.Parse(TxtSpeed.Text)
-            };
-            UrbanTransportEntities.GetContext().Transport.Add(transport);
-            UrbanTransportEntities.GetContext().SaveChanges();
-            MessageBoxResult boxResult = MessageBox.Show("Данные добавлены. Добавить ещё?", "Сообщение", MessageBoxButton.YesNo);
-            if (boxResult == MessageBoxResult.Yes)
-            {
-                TxtName.Clear();
-                TxtSpeed.Clear();
+                UrbanTransportEntities.GetContext().Transport.Add(_currentTransport);
             }
-            else
+
+            try
+            {
+                UrbanTransportEntities.GetContext().SaveChanges();
+                MessageBox.Show("Информация сохранена!");
                 BD.ClassFrame.frmObj.Navigate(new Pages.PageTransport());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }

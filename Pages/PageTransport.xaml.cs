@@ -49,7 +49,7 @@ namespace appUrbanTransport.Pages
 
         private void new_Click(object sender, RoutedEventArgs e)
         {
-            BD.ClassFrame.frmObj.Navigate(new Pages.PageAddEditTransport());
+            BD.ClassFrame.frmObj.Navigate(new Pages.PageAddEditTransport(null));
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -72,6 +72,11 @@ namespace appUrbanTransport.Pages
                     MessageBox.Show(ex.Message.ToString());
                 }
             }
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            BD.ClassFrame.frmObj.Navigate(new Pages.PageAddEditTransport((sender as Button).DataContext as Transport));
         }
     }
 }

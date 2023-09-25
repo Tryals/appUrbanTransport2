@@ -131,6 +131,21 @@
                 <DataGridTextColumn  
         Header="Скорость (Км/ч)" Width="*"
         Binding="{Binding speed_km_h}"/>
+                <DataGridTemplateColumn
+                    Header="Редактировать">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать"
+                    Width="100"
+                                    FontSize="12"
+                    Height="50"
+                    Margin="5"
+                    Style="{StaticResource stlButton}"
+                    Click="Edit_Click"
+                    Name="Edit"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

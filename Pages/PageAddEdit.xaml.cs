@@ -21,9 +21,13 @@ namespace appUrbanTransport.Pages
     /// </summary>
     public partial class PageAddEdit : Page
     {
-        public PageAddEdit()
+        private Routes _currentRoutes = new Routes();
+        public PageAddEdit(Routes selectedRoutes)
         {
             InitializeComponent();
+            if (selectedRoutes != null)
+                _currentRoutes = selectedRoutes;
+            DataContext = _currentRoutes;
             CmbTransport.ItemsSource = UrbanTransportEntities.GetContext().Transport.ToList();
             CmbTransport.SelectedValuePath = "id_transport";
             CmbTransport.DisplayMemberPath = "name";
@@ -31,28 +35,21 @@ namespace appUrbanTransport.Pages
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            Routes routes = new Routes()
+            if (_currentRoutes.id_route == 0)
             {
-                number_of_cars = int.Parse(TxtNumCars.Text),
-                price = float.Parse(TxtPrice.Text),
-                number_of_passengers = int.Parse(TxtNumPas.Text),
-                route_start = TxtRouteStart.Text,
-                route_end = TxtRouteEnd.Text,
-                id_transport = int.Parse(CmbTransport.SelectedValue.ToString())
-            };
-            UrbanTransportEntities.GetContext().Routes.Add(routes);
-            UrbanTransportEntities.GetContext().SaveChanges();
-            MessageBoxResult boxResult = MessageBox.Show("Данные добавлены. Добавить ещё?", "Сообщение", MessageBoxButton.YesNo);
-            if (boxResult == MessageBoxResult.Yes)
-            {
-                TxtNumCars.Clear();
-                TxtPrice.Clear();
-                TxtNumPas.Clear();
-                TxtRouteStart.Clear();
-                TxtRouteEnd.Clear();
+                UrbanTransportEntities.GetContext().Routes.Add(_currentRoutes);
             }
-            else
+
+            try
+            {
+                UrbanTransportEntities.GetContext().SaveChanges();
+                MessageBox.Show("Информация сохранена!");
                 BD.ClassFrame.frmObj.Navigate(new Pages.PageRoutes());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }

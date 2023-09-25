@@ -93,7 +93,8 @@
                 <TextBlock Text="Модель"
                    Width="200"/>
                 <TextBox Style="{DynamicResource TextBoxStyle1}" Name="TxtName" 
-                Width="150"/>
+                Width="150"
+                         Text="{Binding name}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                 HorizontalAlignment="Center"
@@ -101,7 +102,8 @@
                 <TextBlock Text="Скорость (Км/ч)"
                    Width="200"/>
                 <TextBox Name="TxtSpeed" 
-                 Width="150" Style="{DynamicResource TextBoxStyle1}"/>
+                 Width="150" Style="{DynamicResource TextBoxStyle1}"
+                         Text="{Binding speed_km_h}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                 HorizontalAlignment="Center">

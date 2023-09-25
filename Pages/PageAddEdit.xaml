@@ -93,7 +93,8 @@
                 <TextBlock Text="Транспорт"
                            Width="200"/>
                 <ComboBox Name="CmbTransport"
-                          Width="150"/>
+                          Width="150"
+                          SelectedItem="{Binding Transport}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
@@ -101,7 +102,7 @@
                 <TextBlock Text="Количество машин"
                            Width="200"/>
                 <TextBox Style="{DynamicResource TextBoxStyle1}" Name="TxtNumCars" 
-                         Width="150"/>
+                         Width="150" Text="{Binding number_of_cars}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
@@ -109,7 +110,8 @@
                 <TextBlock Text="Цена"
                            Width="200"/>
                 <TextBox Name="TxtPrice" 
-                         Width="150" Style="{DynamicResource TextBoxStyle1}"/>
+                         Width="150" Style="{DynamicResource TextBoxStyle1}"
+                         Text="{Binding price}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
@@ -117,7 +119,8 @@
                 <TextBlock Text="Среднее количество пассажиров" 
                            Width="200"/>
                 <TextBox Name="TxtNumPas" 
-                         Width="150" Style="{DynamicResource TextBoxStyle1}"/>
+                         Width="150" Style="{DynamicResource TextBoxStyle1}"
+                         Text="{Binding number_of_passengers}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
@@ -125,14 +128,16 @@
                 <TextBlock Text="Начальная остановка" 
                            Width="200"/>
                 <TextBox Name="TxtRouteStart" 
-                         Width="150" Style="{DynamicResource TextBoxStyle1}"/>
+                         Width="150" Style="{DynamicResource TextBoxStyle1}"
+                         Text="{Binding route_start}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         Margin="5">
                 <TextBlock Text="Конечная остановка"
                            Width="200"/>
-                <TextBox Name="TxtRouteEnd" Width="150" Style="{DynamicResource TextBoxStyle1}"/>
+                <TextBox Name="TxtRouteEnd" Width="150" Style="{DynamicResource TextBoxStyle1}"
+                         Text="{Binding route_end}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
